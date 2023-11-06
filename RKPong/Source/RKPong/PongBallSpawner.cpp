@@ -27,8 +27,6 @@ void APongBallSpawner::Tick(float DeltaTime)
 
 	APongGameStateBase* state = GetWorld()->GetGameState<APongGameStateBase>();
 	if (state->NewGame) {
-		FActorSpawnParameters Params;
-		Params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
 		state->NewGame = false;
 		GetWorld()->GetTimerManager().SetTimer(Timer, this, &APongBallSpawner::SpawnBall, 2.0f, false);
 	}
@@ -37,11 +35,13 @@ void APongBallSpawner::Tick(float DeltaTime)
 
 void APongBallSpawner::SpawnBall() {
 	
-	float X = this->GetActorLocation().X;
-	float Y = this->GetActorLocation().Y;
-	float Z = this->GetActorLocation().Z;
+	//float X = this->GetActorLocation().X;
+	//float Y = this->GetActorLocation().Y;
+	//float Z = this->GetActorLocation().Z;
 
-	this->Spawn
+	FActorSpawnParameters Params;
+	Params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
+	APongBall* Ball = GetWorld()->SpawnActor<APongBall>(APongBall::StaticClass(), this->GetActorLocation(), this->GetActorRotation(), Params);
 
 }
 

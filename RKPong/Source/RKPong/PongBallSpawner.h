@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "PongBall.h"
 #include "PongGameStateBase.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
