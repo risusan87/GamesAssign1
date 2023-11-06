@@ -35,13 +35,13 @@ void APongBallSpawner::Tick(float DeltaTime)
 
 void APongBallSpawner::SpawnBall() {
 	
-	//float X = this->GetActorLocation().X;
-	//float Y = this->GetActorLocation().Y;
-	//float Z = this->GetActorLocation().Z;
+	float X = this->GetActorLocation().X - 1.0f;
+	float Y = this->GetActorLocation().Y;
+	float Z = this->GetActorLocation().Z;
 
 	FActorSpawnParameters Params;
 	Params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
-	APongBall* Ball = GetWorld()->SpawnActor<APongBall>(Blueprint->StaticClass(), this->GetActorLocation(), this->GetActorRotation(), Params);
+	APongBall* Ball = GetWorld()->SpawnActor<APongBall>(Blueprint, FVector(X, Y, Z), this->GetActorRotation(), Params);
 
 }
 
