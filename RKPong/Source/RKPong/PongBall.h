@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "Kismet/GameplayStatics.h"
 #include "PongGameStateBase.h"
 #include "PongWall.h"
 #include "CoreMinimal.h"

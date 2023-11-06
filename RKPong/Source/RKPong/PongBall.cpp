@@ -53,11 +53,15 @@ void APongBall::NotifyHit(class UPrimitiveComponent* MyComp, AActor* Other, clas
 		return;
 
 	if (state && hitWall->Side == 0) {
-		state->PlayerScore++;
+		state->EnemyScore++;
 	}
 	else if (state && hitWall->Side == 1)
-		state->EnemyScore++;
+		state->PlayerScore++;
 
+	APongBall* CurrentBall =
+		Cast<APongBall>(UGameplayStatics::GetActorOfClass(GetWorld(), APongBall::StaticClass()));
+	CurrentBall->Destroy();
+	state->NewGame = true;
 
 }
 
