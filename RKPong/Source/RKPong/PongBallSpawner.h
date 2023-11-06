@@ -18,6 +18,8 @@ public:
 	APongBallSpawner();
 	UPROPERTY(EditAnywhere, Category = "Pong Ball Spawner")
 		UStaticMeshComponent* StaticMeshComponent;
+	UPROPERTY(EditAnywhere, Category = "Pong Ball Spawner")
+		APongBall* Blueprint;
 	FTimerHandle Timer;
 
 protected:

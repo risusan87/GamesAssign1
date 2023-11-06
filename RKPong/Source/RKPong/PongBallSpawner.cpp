@@ -41,7 +41,7 @@ void APongBallSpawner::SpawnBall() {
 
 	FActorSpawnParameters Params;
 	Params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
-	APongBall* Ball = GetWorld()->SpawnActor<APongBall>(APongBall::StaticClass(), this->GetActorLocation(), this->GetActorRotation(), Params);
+	APongBall* Ball = GetWorld()->SpawnActor<APongBall>(Blueprint->StaticClass(), this->GetActorLocation(), this->GetActorRotation(), Params);
 
 }
 
