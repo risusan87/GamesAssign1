@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "PongBall.h"
 #include "Net/UnrealNetwork.h"
 #include "CoreMinimal.h"
 #include "GameFramework/GameStateBase.h"
