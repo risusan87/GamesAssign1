@@ -22,6 +22,13 @@ class RKPONG_API APongHUD : public AHUD
 	UPROPERTY(EditAnywhere, Category = "Pong HUD")
 		float PlayerHUD_Scale;
 
+	UPROPERTY(EditAnywhere, Category = "Pong HUD")
+		int32 EnemyHUDX;
+	UPROPERTY(EditAnywhere, Category = "Pong HUD")
+		int32 EnemyHUDY;
+	UPROPERTY(EditAnywhere, Category = "Pong HUD")
+		float EnemyHUD_Scale;
+
 public:
 	virtual void DrawHUD() override;
 

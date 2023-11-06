@@ -7,6 +7,6 @@ void APongHUD::DrawHUD() {
 
 	Super::DrawHUD();
 	APongGameStateBase* state = GetWorld()->GetGameState<APongGameStateBase>();
-	DrawText(FString::Printf(TEXT("%d"), state->PlayerScore), FLinearColor::White, PlayerHUDX, PlayerHUDY, NULL, 3.0f, true);
-
+	DrawText(FString::Printf(TEXT("%d"), state->PlayerScore), FLinearColor::White, PlayerHUDX, PlayerHUDY, NULL, PlayerHUD_Scale, true);
+	DrawText(FString::Printf(TEXT("%d"), state->EnemyScore), FLinearColor::White, EnemyHUDX, EnemyHUDY, NULL, EnemyHUD_Scale, true);
 }
