@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include "Components/SphereComponent.h"
+#include "GameFramework/ProjectileMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "PongGameStateBase.h"
 #include "PongWall.h"
@@ -18,9 +20,14 @@ public:
 	// Sets default values for this actor's properties
 	APongBall();
 	UPROPERTY(EditAnywhere, Category = "Pong Paddle")
-		UPrimitiveComponent* PrimitiveComponent;
+		USphereComponent* SphereComponent;
 	UPROPERTY(EditAnywhere, Category = "Pong Paddle")
 		UStaticMeshComponent* StaticMeshComponent;
+	UPROPERTY(EditAnywhere, Category = "Pong Paddle")
+		UProjectileMovementComponent* ProjectileMovementComponent;
+
+	UPROPERTY(EditAnywhere, Category = "Pong Paddle")
+		float Speed;
 
 protected:
 	// Called when the game starts or when spawned

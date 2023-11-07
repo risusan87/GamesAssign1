@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include "Kismet/GameplayStatics.h"
+#include "PongBall.h"
 #include "CoreMinimal.h"
 #include "PongPaddle.h"
 #include "AIPongPaddle.generated.h"

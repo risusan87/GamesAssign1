@@ -38,3 +38,11 @@ void APongPaddle::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 
 }
 
+void APongPaddle::PaddleMove(float direction) {
+	FVector Direction = FVector(0.0f, 0.0f, direction * PaddleSpeed) + GetActorLocation();
+	//AddMovementInput(Direction, MoveForwardAmount);
+	SetActorLocation(Direction, true);
+}
+
+
+

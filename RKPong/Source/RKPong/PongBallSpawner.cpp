@@ -36,7 +36,7 @@ void APongBallSpawner::Tick(float DeltaTime)
 void APongBallSpawner::SpawnBall() {
 	
 
-	float X = this->GetActorLocation().X - 1.0f;
+	float X = this->GetActorLocation().X - 50.0f;
 	float Y = this->GetActorLocation().Y;
 	float Z = this->GetActorLocation().Z;
 

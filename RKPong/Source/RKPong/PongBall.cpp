@@ -8,8 +8,12 @@ APongBall::APongBall()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	SphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComponent"));
+	SetRootComponent(SphereComponent);
 	StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMeshComponent"));
-	SetRootComponent(StaticMeshComponent);
+	StaticMeshComponent->SetupAttachment(RootComponent);
+	ProjectileMovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovementComponent"));
+	ProjectileMovementComponent->SetUpdatedComponent(RootComponent);
 
 }
 
@@ -17,7 +21,7 @@ APongBall::APongBall()
 void APongBall::BeginPlay()
 {
 	Super::BeginPlay();
-	StaticMeshComponent->SetAllPhysicsLinearVelocity(FVector(0.0f, 500.0f, 0.0f));
+	ProjectileMovementComponent->Velocity = FVector(0.0f, Speed, 0.0f);
 	FixedX = GetActorLocation().X;
 	//PrimitiveComponent->SetAllPhysicsLinearVelocity(FVector(0.0f, 10.0f, 0.0f));
 	
@@ -38,7 +42,7 @@ void APongBall::Tick(float DeltaTime)
 		float X = 0.0f;
 		float Y = FMath::Abs(GetVelocity().X) * UnitVec.Y + GetVelocity().Y;
 		float Z = FMath::Abs(GetVelocity().X) * UnitVec.Z + GetVelocity().Z;
-		StaticMeshComponent->SetAllPhysicsLinearVelocity(FVector(X, Y, Z));
+		ProjectileMovementComponent->Velocity = FVector(X, Y, Z);
 
 	}
 
@@ -57,11 +61,13 @@ void APongBall::NotifyHit(class UPrimitiveComponent* MyComp, AActor* Other, clas
 	}
 	else if (state && hitWall->Side == 1)
 		state->PlayerScore++;
-
-	APongBall* CurrentBall =
-		Cast<APongBall>(UGameplayStatics::GetActorOfClass(GetWorld(), APongBall::StaticClass()));
-	CurrentBall->Destroy();
-	state->NewGame = true;
+	if (hitWall->Side != -1) {
+		APongBall* CurrentBall =
+			Cast<APongBall>(UGameplayStatics::GetActorOfClass(GetWorld(), APongBall::StaticClass()));
+		CurrentBall->Destroy();
+		state->NewGame = true;
+	}
+	
 
 }
 

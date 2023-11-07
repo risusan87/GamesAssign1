@@ -6,9 +6,10 @@
 void AAIPongPaddle::Tick(float DeltaTime) {
 
 	Super::Tick(DeltaTime);
-
-	FVector Direction = FVector(0.0f, 0.0f, 5.0f) + GetActorLocation();
-	//AddMovementInput(Direction, MoveForwardAmount);
-	SetActorLocation(Direction, true);
+	APongBall* Ball = Cast<APongBall>(UGameplayStatics::GetActorOfClass(this->GetWorld(), APongBall::StaticClass()));
+	if (Ball) {
+		float direction = Ball->GetActorLocation().Z > this->GetActorLocation().Z ? 1 : -1;
+		PaddleMove(direction);
+	}
 
 }

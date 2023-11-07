@@ -20,9 +20,7 @@ void AMyPongPaddle::Tick(float DeltaTime) {
 	Super::Tick(DeltaTime);
 
 	if (this->Controller != nullptr && MoveForwardAmount != 0.0f) {
-		FVector Direction = FVector(0.0f, 0.0f, MoveForwardAmount * 5.0f) + GetActorLocation();
-		//AddMovementInput(Direction, MoveForwardAmount);
-		SetActorLocation(Direction, true);
+		PaddleMove(MoveForwardAmount);
 	}
 	
 	
